@@ -1,0 +1,51 @@
+<main class="contenedor">
+  <form action="/vacantes/editar/{{vacante.url}}" method="POST" class="default-form">
+    <h3>Informações Gerais</h3>
+    <div class='campo'>
+      <label>Título</label>
+      <input type="text" value={{vacante.titulo}} name="titulo" placeholder='p.e. Developer React' required>
+    </div>
+    <div class='campo'>
+      <label>Empresa</label>
+      <input type="text" value={{vacante.empresa}} name="empresa" placeholder='Empresa Contrata' required>
+    </div>
+    <div class='campo'>
+      <label>Localização</label>
+      <input type="text" value={{vacante.ubicacion}} name="ubicacion" placeholder='p.e. São Paulo SP ou Remoto'
+        required>
+    </div>
+    <div class='campo'>
+      <label>Salário (USD)</label>
+      <input type="text" value={{vacante.salario}} name="salario" placeholder='p.e. 500 USD' required>
+    </div>
+    <div class='campo'>
+
+      <label>Contrato</label>
+
+      <select name="contrato">
+        {{#tipoContrato vacante.contrato}}
+        <option value="" disabled selected>-- Selecione --</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Tiempo Completo">Horário Comercial</option>
+        <option value="Medio Tiempo">Meio Período</option>
+        <option value="Por Projeto">Por Projeto</option>
+        {{/tipoContrato }}
+      </select>
+    </div>
+    <h3>Descrição do Posto</h3>
+    <div class="campo descripcion">
+      <label>Descrição</label>
+      <input type="hidden" id="x" value="{{{vacante.descripcion}}}" name="descripcion">
+      <trix-editor input="x"></trix-editor>
+    </div>
+    <h3>Conhecimentos</h3>
+    <ul class="lista-conocimientos">
+      {{#seleccionarSkills vacante.skills}}
+      {{/seleccionarSkills}}
+    </ul>
+    <div class='campo centrar-horizontal'>
+      <input type="hidden" name="skills" id="skills">
+      <input type="submit" value="Atualizar" class='btn btn-azul'>
+    </div>
+  </form>
+</main>
